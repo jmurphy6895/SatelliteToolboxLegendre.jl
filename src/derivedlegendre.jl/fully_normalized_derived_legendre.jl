@@ -1,4 +1,4 @@
-export fully_normalized_derived_legendre!
+export fully_normalized_derived_legendre
 #TODO: FIX DOCS
 """
     fully_normalized_legendre!(P::AbstractMatrix{T}, ϕ::Number, n_max::Integer = -1, m_max::Integer = -1; kwargs...) where T<:Number -> Nothing
@@ -47,11 +47,10 @@ function fully_normalized_derived_legendre!(
     u::Number,
     n_max::Integer = -1,
     m_max::Integer = -1;
-    ph_term::Bool = false
 ) where T<:Number
 
     # Obtain the maximum degree and order that must be computed.
-    n_max, m_max = _get_degree_and_order(A, n_max + 1, m_max + 1)
+    n_max, m_max = _get_degree_and_order(A, n_max, m_max)
 
     # Get the first indices in `P` to take into account offset arrays.
     i₀, j₀ = first.(axes(A))
@@ -80,10 +79,9 @@ function fully_normalized_derived_legendre!(
 end
 
 function fully_normalized_derived_legendre(
-    ϕ::T,
+    u::T,
     n_max::Integer,
     m_max::Integer = -1;
-    ph_term::Bool = false
 ) where T<:Number
     n_max < 0 && throw(ArgumentError("n_max must be positive."))
 
@@ -92,7 +90,7 @@ function fully_normalized_derived_legendre(
     end
 
     A = zeros(float(T), n_max + 1, m_max + 1)
-    fully_normalized_derived_legendre!(P, ϕ; ph_term = ph_term)
+    fully_normalized_derived_legendre!(A, u)
 
     return A
 end
