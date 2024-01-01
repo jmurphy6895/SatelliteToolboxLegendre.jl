@@ -89,7 +89,7 @@ function fully_normalized_derived_legendre(
         m_max = n_max
     end
 
-    A = zeros(float(T), n_max + 1, m_max + 1)
+    A = zeros(float(T), n_max + 2, m_max + 2)
     fully_normalized_derived_legendre!(A, u)
 
     return A
