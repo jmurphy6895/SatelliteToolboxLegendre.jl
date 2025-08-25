@@ -69,7 +69,7 @@ function fully_normalized_legendre!(
     n_max, m_max = _get_degree_and_order(P, n_max, m_max)
 
     # Auxiliary variables to improve code performance.
-    s, c = sincos(T(ϕ))
+    s, c = sincos(ϕ)
 
     # The sine must be always positive. In fact, `s` was previously computed using
     # `√(1 - c^2)`. However, we had numerical problems for very small angles that lead to
