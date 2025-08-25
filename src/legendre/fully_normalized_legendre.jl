@@ -184,7 +184,7 @@ function fully_normalized_legendre(
         m_max = n_max
     end
 
-    P = zeros(float(T), n_max + 1, m_max + 1)
+    P = zeros(T, n_max + 1, m_max + 1)
     fully_normalized_legendre!(P, ϕ; ph_term = ph_term)
 
     return P
